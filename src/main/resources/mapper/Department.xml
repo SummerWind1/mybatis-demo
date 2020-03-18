@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icoding.mybatisdemo.mapper.DepartmentMapper">
+    
+    <insert id="add" parameterType="com.icoding.mybatisdemo.pojo.Department">
+        insert  into `department`(`id`,`department_name`) values (#{id}, #{departmentName})
+    </insert>
+
+    <select id="getDepartmentList" resultType="com.icoding.mybatisdemo.pojo.Department">
+        select * from department
+    </select>
+
+</mapper>
