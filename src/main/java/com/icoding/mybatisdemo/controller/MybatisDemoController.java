@@ -1,14 +1,16 @@
 package com.icoding.mybatisdemo.controller;
 
+import com.icoding.mybatisdemo.config.BeanInvoker;
 import com.icoding.mybatisdemo.pojo.Department;
 import com.icoding.mybatisdemo.service.DepartmentService;
+import com.icoding.mybatisdemo.service.Shape;
 import com.icoding.radishspringbootautoconfigure.service.RadishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class MybatisDemoController {
@@ -22,8 +24,14 @@ public class MybatisDemoController {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private BeanInvoker beanInvoker;
+
     @RequestMapping("/hello")
     public String hello(){
+
+        beanInvoker.doDistribute();
+
         return radishService.getRadish();
     }
 
@@ -44,6 +52,15 @@ public class MybatisDemoController {
         return departmentService.getDepartmentList();
     }
 
+    public static void main(String[] args) {
 
+        Integer [] a = new Integer[]{1,2,3,4};
+
+        List<Integer> integers = Arrays.asList(a);
+        Set<Integer> set = new HashSet<Integer>(integers);
+        List<Integer> list = new ArrayList<>(set);
+        Collections.reverse(list);
+        System.out.println(list);
+    }
 
 }
